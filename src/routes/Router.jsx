@@ -10,6 +10,8 @@ import AllReviews from "../pages/AllReviews";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import MyReviews from "../pages/MyReviews";
+import AboutUs from "../pages/AboutUs";
+import MyFavorites from "../pages/MyFavorites";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "/all-reviews",
         element: <AllReviews></AllReviews>,
+      },
+      {
+        path: "/my-favorites",
+        element: <MyFavorites></MyFavorites>
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs></AboutUs>,
       },
       {
         path: "/my-reviews",
