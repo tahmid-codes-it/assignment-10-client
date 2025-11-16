@@ -21,10 +21,12 @@ const router = createBrowserRouter([
       {
         path: "/", // Default route
         element: <Home />,
+        loader: () => fetch('http://localhost:3000/Reviewer')
       },
       {
         path: "/all-reviews",
         element: <AllReviews></AllReviews>,
+        loader: ()=>fetch('http://localhost:3000/Reviewer')
       },
       {
         path: "/my-favorites",
