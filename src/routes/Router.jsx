@@ -13,6 +13,8 @@ import MyReviews from "../pages/MyReviews";
 import AboutUs from "../pages/AboutUs";
 import MyFavorites from "../pages/MyFavorites";
 import ViewDetails from "../pages/viewDetails";
+import PrivateRoute from "./PrivateRoute";
+import AddReview from "../pages/AddReview";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,15 @@ const router = createBrowserRouter([
         path: "/my-reviews",
         element: <MyReviews></MyReviews> 
       },
+      {
+  path: "/add-review",
+  element: (
+    <PrivateRoute>
+      <AddReview />
+    </PrivateRoute>
+  ),
+},
+
       {
         path: "*",
         element: <ErrorPage />,
