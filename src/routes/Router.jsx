@@ -12,6 +12,7 @@ import SignIn from "../pages/SignIn";
 import MyReviews from "../pages/MyReviews";
 import AboutUs from "../pages/AboutUs";
 import MyFavorites from "../pages/MyFavorites";
+import ViewDetails from "../pages/viewDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,12 @@ const router = createBrowserRouter([
         path: "/about-us",
         element: <AboutUs></AboutUs>,
       },
+      {
+  path: "/review/:id",
+  element: <ViewDetails />,
+  loader: ({ params }) =>
+    fetch(`http://localhost:3000/review/${params.id}`)
+},
       {
         path: "/my-reviews",
         element: <MyReviews></MyReviews> 
