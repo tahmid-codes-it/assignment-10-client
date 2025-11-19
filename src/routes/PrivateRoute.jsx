@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { auth } from "../firebase/Firebase.config";
+import { AuthContext } from "../provider/AuthProvider";
 
 const PrivateRoute = ({ children }) => {
-  const user = auth.currentUser;
-  const location = useLocation();
+    const { user, loading } = useContext(AuthContext);
+    const location = useLocation();
 
-  if (user) {
+    if (loading) {
+        return <div className="text-center py-32 text-xl">Loading...</div>;
+    }
+
+    if (!user) {
+        return <Navigate to="/signin" state={{ from: location }} replace />;
+    }
+
     return children;
-  }
-
-  // Redirect to login and save where we came from
-  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default PrivateRoute;

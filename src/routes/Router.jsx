@@ -15,6 +15,7 @@ import MyFavorites from "../pages/MyFavorites";
 import ViewDetails from "../pages/viewDetails";
 import PrivateRoute from "./PrivateRoute";
 import AddReview from "../pages/AddReview";
+import EditReview from "../pages/EditReview";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,16 @@ const router = createBrowserRouter([
     </PrivateRoute>
   ),
 },
+
+{
+    path: "/edit-review/:id",
+    element: (
+        <PrivateRoute>
+            <EditReview></EditReview>
+        </PrivateRoute>
+    )
+},
+
 
       {
         path: "*",
