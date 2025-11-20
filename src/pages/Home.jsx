@@ -11,7 +11,6 @@ import {
   FaStar,
   FaMapMarkerAlt,
   FaUserCircle,
-  FaHeart,
 } from "react-icons/fa";
 
 const Home = () => {
@@ -21,21 +20,6 @@ const Home = () => {
   const topReviews = [...reviews]
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 6);
-
-  // Handle Favorites
-  const [favorites, setFavorites] = useState([]);
-
-  useEffect(() => {
-    setFavorites(Array(topReviews.length).fill(false));
-  }, [reviews]);
-
-  const toggleFavorite = (index) => {
-    setFavorites((prev) => {
-      const updated = [...prev];
-      updated[index] = !updated[index];
-      return updated;
-    });
-  };
 
   const slides = [
     {
@@ -67,9 +51,7 @@ const Home = () => {
 
   return (
     <div className="space-y-16">
-      {/* ===========================
-          HERO SLIDER
-      ============================ */}
+      {/* HERO SLIDER */}
       <div className="w-full">
         <Swiper
           slidesPerView={1}
@@ -101,9 +83,7 @@ const Home = () => {
         </Swiper>
       </div>
 
-      {/* ===========================
-          TOP REVIEWS
-      ============================ */}
+      {/* TOP REVIEWS */}
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold">Top Reviews</h2>
@@ -118,24 +98,11 @@ const Home = () => {
           <p className="text-gray-500 text-center">No reviews available.</p>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
-            {topReviews.map((item, index) => (
+            {topReviews.map((item) => (
               <div
                 key={item._id}
                 className="shadow rounded-xl overflow-hidden border relative"
               >
-                {/* Favorite Button */}
-                <button
-                  onClick={() => toggleFavorite(index)}
-                  className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md z-20"
-                >
-                  <FaHeart
-                    size={20}
-                    className={
-                      favorites[index] ? "text-red-600" : "text-gray-300"
-                    }
-                  />
-                </button>
-
                 <img
                   src={
                     item.photo_url ||
@@ -161,9 +128,9 @@ const Home = () => {
                     <FaStar /> {item.rating} / 5
                   </div>
 
-                  <div className="flex items-center gap-2 text-gray-600">
+                  <p className="flex items-center gap-2 text-gray-600">
                     <FaUserCircle /> {item.reviewer_name}
-                  </div>
+                  </p>
 
                   <Link to={`/review/${item._id}`}>
                     <button className="bg-orange-600 text-white hover:bg-orange-700 btn-sm w-full mt-3 py-2 rounded">
@@ -177,10 +144,7 @@ const Home = () => {
         )}
       </div>
 
-      {/* ===========================
-          EXTRA SECTIONS (UNCHANGED)
-      ============================ */}
-
+      {/* EXTRA SECTION 1 */}
       <div className="bg-base-200 py-16">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
           <img
@@ -201,6 +165,7 @@ const Home = () => {
         </div>
       </div>
 
+      {/* EXTRA SECTION 2 */}
       <div className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <h2 className="text-3xl font-bold mb-4">Write Your Review</h2>
