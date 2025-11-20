@@ -12,7 +12,8 @@ const MyReviews = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/my-reviews?email=${user.email}`)
+    fetch(`http://localhost:3000/reviews/my?email=${user.email}`)
+    
       .then((res) => res.json())
       .then((data) => setMyReviews(data))
       .catch((err) => console.log("Error loading reviews:", err));

@@ -1,11 +1,10 @@
 // routes/Router.jsx
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 
-// Import your pages
+// Pages
 import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
-
 import AllReviews from "../pages/AllReviews";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
@@ -19,69 +18,78 @@ import EditReview from "../pages/EditReview";
 
 const router = createBrowserRouter([
   {
-    path: "/", // Root layout
-    element: <MainLayout />, // Navbar + Footer live here
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/", // Default route
+        index: true,
         element: <Home />,
-        loader: () => fetch('http://localhost:3000/Reviewer')
+        loader: () => fetch("http://localhost:3000/reviews/top"),
       },
       {
-        path: "/all-reviews",
-        element: <AllReviews></AllReviews>,
-        loader: ()=>fetch('http://localhost:3000/Reviewer')
+        path: "all-reviews",
+        element: <AllReviews />,
+        loader: () => fetch("http://localhost:3000/reviews"),
       },
       {
-        path: "/my-favorites",
-        element: <MyFavorites></MyFavorites>
+        path: "review/:id",
+        element: <ViewDetails />,
+        loader: ({ params }) => fetch(`http://localhost:3000/reviews/${params.id}`),
       },
       {
-        path: "/about-us",
-        element: <AboutUs></AboutUs>,
+        path: "my-reviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
       {
-  path: "/review/:id",
-  element: <ViewDetails />,
-  loader: ({ params }) =>
-    fetch(`http://localhost:3000/review/${params.id}`)
-},
-      {
-        path: "/my-reviews",
-        element: <MyReviews></MyReviews> 
+        path: "add-review",
+        element: (
+          <PrivateRoute>
+            <AddReview />
+          </PrivateRoute>
+        ),
       },
       {
-  path: "/add-review",
-  element: (
-    <PrivateRoute>
-      <AddReview />
-    </PrivateRoute>
-  ),
-},
-
-{
-    path: "/edit-review/:id",
-    element: (
-        <PrivateRoute>
-            <EditReview></EditReview>
-        </PrivateRoute>
-    )
-},
-
-
-      {
-        path: "*",
-        element: <ErrorPage />,
+        path: "edit-review/:id",
+        element: (
+          <PrivateRoute>
+            <EditReview />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/sign-up",
-        element: <SignUp></SignUp>, // No Navbar/Footer layout
+        path: "my-favorites",
+        element: (
+          <PrivateRoute>
+            <MyFavorites />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/sign-in",
-        element: <SignIn></SignIn>, 
-      }
+        path: "about-us",
+        element: <AboutUs />,
+      },
     ],
+  },
+
+  // AUTH ROUTES
+  {
+    path: "/sign-in",
+    element: <SignIn />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
+  },
+
+  // 404
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
