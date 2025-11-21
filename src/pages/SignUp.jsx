@@ -66,7 +66,10 @@ const SignUp = () => {
         {/* Left Section — Title + Food Illus */}
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-4xl sm:text-5xl font-bold text-orange-600">
-            Join <span className="text-red-700">YumNet</span>
+            Join <span className=" text-orange-600 ">
+          Yum<span className="text-red-600">Net</span>
+
+            </span>
           </h1>
           <p className="py-4 text-gray-700 sm:text-lg">
             Create an account to discover local food spots, share delicious reviews, 

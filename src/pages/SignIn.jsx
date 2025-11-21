@@ -70,7 +70,10 @@ const SignIn = () => {
         <div className="text-center lg:text-left lg:w-1/2">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-600 leading-tight">
             Welcome Back to <br />
-            <span className="text-red-700">YumNet</span>
+            <div className=" text-orange-600 ">
+          Yum<span className="text-red-600">Net</span>
+
+            </div>
           </h1>
 
           <p className="py-4 sm:py-6 text-gray-700 text-base sm:text-lg">

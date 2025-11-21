@@ -136,7 +136,7 @@ const AllReviews = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           type="text"
-          placeholder="Search by food name (server-side)..."
+          placeholder="Search by food name..."
           className="flex-1 border rounded-lg px-4 py-3 shadow-sm"
         />
 
