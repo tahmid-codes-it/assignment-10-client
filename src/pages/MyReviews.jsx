@@ -8,12 +8,11 @@ const MyReviews = () => {
   const [myReviews, setMyReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
-  // Load reviews that belong to the logged-in user
+  // Load reviews belonging to the logged-in user
   useEffect(() => {
     if (!user?.email) return;
 
     fetch(`http://localhost:3000/reviews/my?email=${user.email}`)
-    
       .then((res) => res.json())
       .then((data) => setMyReviews(data))
       .catch((err) => console.log("Error loading reviews:", err));
@@ -21,7 +20,7 @@ const MyReviews = () => {
 
   // Delete review
   const handleDelete = () => {
-    fetch(`http://localhost:3000/review/${selectedReview._id}`, {
+    fetch(`http://localhost:3000/reviews/${selectedReview._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -36,9 +35,7 @@ const MyReviews = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold text-orange-600 mb-8">
-        My Reviews
-      </h1>
+      <h1 className="text-3xl font-bold text-orange-600 mb-8">My Reviews</h1>
 
       {/* TABLE */}
       <div className="overflow-x-auto shadow-lg rounded-xl bg-white">
@@ -69,9 +66,7 @@ const MyReviews = () => {
 
                   <td>{review.restaurant_name}</td>
 
-                  <td>
-                    {new Date(review.date).toLocaleDateString("en-GB")}
-                  </td>
+                  <td>{new Date(review.date).toLocaleDateString("en-GB")}</td>
 
                   <td className="flex gap-3 justify-center">
                     {/* EDIT BUTTON */}
@@ -110,7 +105,9 @@ const MyReviews = () => {
       {selectedReview && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <div className="bg-white p-6 rounded-xl w-96 shadow-xl text-center">
-            <h2 className="text-xl font-semibold mb-4">Delete this review?</h2>
+            <h2 className="text-xl font-semibold mb-4">
+              Delete this review?
+            </h2>
 
             <p className="text-gray-600 mb-6">
               This action cannot be undone.

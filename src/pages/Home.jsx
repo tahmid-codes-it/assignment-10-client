@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
+import { auth } from "../firebase/Firebase.config";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
 
 import {
   FaStar,
@@ -173,7 +174,7 @@ const Home = () => {
             Share your food experiences with the world. Your review can help
             someone find their next favorite dish!
           </p>
-          <Link to="/add-review">
+          <Link to={auth.currentUser ? "/add-review" : "/sign-in"}>
             <button className="border border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white mt-4 px-4 py-2 rounded">
               Write a Review
             </button>
