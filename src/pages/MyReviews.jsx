@@ -8,11 +8,13 @@ const MyReviews = () => {
   const [myReviews, setMyReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
-  // Load reviews belonging to the logged-in user
+  const SERVER_URL = "http://localhost:3000";
+
+  // Load user's reviews
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/reviews/my?email=${user.email}`)
+    fetch(`${SERVER_URL}/reviews/my?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data))
       .catch((err) => console.log("Error loading reviews:", err));
@@ -20,7 +22,7 @@ const MyReviews = () => {
 
   // Delete review
   const handleDelete = () => {
-    fetch(`http://localhost:3000/reviews/${selectedReview._id}`, {
+    fetch(`${SERVER_URL}/reviews/${selectedReview._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -37,7 +39,6 @@ const MyReviews = () => {
     <div className="max-w-6xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold text-orange-600 mb-8">My Reviews</h1>
 
-      {/* TABLE */}
       <div className="overflow-x-auto shadow-lg rounded-xl bg-white">
         <table className="table w-full">
           <thead className="bg-orange-600 text-white text-lg">
@@ -69,7 +70,6 @@ const MyReviews = () => {
                   <td>{new Date(review.date).toLocaleDateString("en-GB")}</td>
 
                   <td className="flex gap-3 justify-center">
-                    {/* EDIT BUTTON */}
                     <Link
                       to={`/edit-review/${review._id}`}
                       className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
@@ -77,7 +77,6 @@ const MyReviews = () => {
                       <FaEdit />
                     </Link>
 
-                    {/* DELETE BUTTON */}
                     <button
                       onClick={() => setSelectedReview(review)}
                       className="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700"
@@ -101,13 +100,10 @@ const MyReviews = () => {
         </table>
       </div>
 
-      {/* DELETE CONFIRM MODAL */}
       {selectedReview && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           <div className="bg-white p-6 rounded-xl w-96 shadow-xl text-center">
-            <h2 className="text-xl font-semibold mb-4">
-              Delete this review?
-            </h2>
+            <h2 className="text-xl font-semibold mb-4">Delete this review?</h2>
 
             <p className="text-gray-600 mb-6">
               This action cannot be undone.
