@@ -32,7 +32,7 @@ const AddReview = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/reviews", {
+      const res = await fetch("https://assignment-10-backend-6rm6.onrender.com/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newReview),
