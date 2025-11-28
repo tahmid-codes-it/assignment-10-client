@@ -11,7 +11,7 @@ import SignIn from "../pages/SignIn";
 import MyReviews from "../pages/MyReviews";
 import AboutUs from "../pages/AboutUs";
 import MyFavorites from "../pages/MyFavorites";
-import ViewDetails from "../pages/viewDetails";
+import ViewDetails from "../pages/ViewDetails";
 import PrivateRoute from "./PrivateRoute";
 import AddReview from "../pages/AddReview";
 import EditReview from "../pages/EditReview";
@@ -25,17 +25,22 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/reviews/top"),
+        loader: () =>
+          fetch("https://assignment-10-backend-6rm6.onrender.com/reviews/top"),
       },
       {
         path: "all-reviews",
         element: <AllReviews />,
-        loader: () => fetch("http://localhost:3000/reviews"),
+        loader: () =>
+          fetch("https://assignment-10-backend-6rm6.onrender.com/reviews"),
       },
       {
         path: "review/:id",
         element: <ViewDetails />,
-        loader: ({ params }) => fetch(`http://localhost:3000/reviews/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://assignment-10-backend-6rm6.onrender.com/reviews/${params.id}`
+          ),
       },
       {
         path: "my-reviews",
@@ -75,8 +80,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // AUTH ROUTES
   {
     path: "/sign-in",
     element: <SignIn />,
@@ -85,8 +88,6 @@ const router = createBrowserRouter([
     path: "/sign-up",
     element: <SignUp />,
   },
-
-  // 404
   {
     path: "*",
     element: <ErrorPage />,
