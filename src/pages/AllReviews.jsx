@@ -66,7 +66,7 @@ const AllReviews = () => {
     setLoading(true);
     setError(null);
 
-    const base = "http://localhost:3000/reviews";
+    const base = "https://assignment-10-backend-6rm6.onrender.com/reviews";
 
     try {
       // Try query param first
