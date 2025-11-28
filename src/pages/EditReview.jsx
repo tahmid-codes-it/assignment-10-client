@@ -10,7 +10,7 @@ const EditReview = () => {
 
   // Load existing review data
   useEffect(() => {
-    fetch(`http://localhost:3000/reviews/${id}`)
+    fetch(`https://assignment-10-backend-6rm6.onrender.com/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data))
       .catch(() => toast.error("Failed to load review"));
@@ -30,7 +30,7 @@ const EditReview = () => {
       review: form.review.value,
     };
 
-    fetch(`http://localhost:3000/reviews/${id}`, {
+    fetch(`https://assignment-10-backend-6rm6.onrender.com/reviews/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedReview),
