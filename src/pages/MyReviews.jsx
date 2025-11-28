@@ -8,7 +8,7 @@ const MyReviews = () => {
   const [myReviews, setMyReviews] = useState([]);
   const [selectedReview, setSelectedReview] = useState(null);
 
-  const SERVER_URL = "http://localhost:3000";
+  const SERVER_URL = "https://assignment-10-backend-6rm6.onrender.com";
 
   // Load user's reviews
   useEffect(() => {
